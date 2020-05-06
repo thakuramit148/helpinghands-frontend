@@ -1,0 +1,113 @@
+<div class="main-container">
+    <div class="sub-container-1" [style.background-image]="'url(' + image + ')'">
+        <div class="sub-container-1-inner">
+            <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                <div class="signup-container">
+                    <div class="first">
+                        <img src="assets/img/user.png" alt="logo">
+                        <p>USER SIGNUP</p>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Username</mat-label>
+                                <input matInput formControlName="username" autocomplete="off">
+                                <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
+                                <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 6
+                                    characters</mat-error>
+                                <mat-error *ngIf="form.username.errors?.maxlength">username must have less than 50
+                                    characters</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Password</mat-label>
+                                <input matInput formControlName="password" type="password">
+                                <mat-error *ngIf="form.password.errors?.required">password is reqiured</mat-error>
+                                <mat-error *ngIf="form.password.errors?.minlength">password must have atleast 6
+                                    characters</mat-error>
+                                <mat-error *ngIf="form.password.errors?.maxlength">password must have less than 40
+                                    characters</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Confirm Password</mat-label>
+                                <input matInput formControlName="confPassword" type="password">
+                                <mat-error *ngIf="form.confPassword.errors?.required">confirm password is reqiured
+                                </mat-error>
+                                <mat-error *ngIf="form.confPassword.errors?.minlength">confirm password must have
+                                    atleast 6 characters</mat-error>
+                                <mat-error *ngIf="form.confPassword.errors?.maxlength">confirm password must have
+                                    less than 40 characters</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Phone no.</mat-label>
+                                <input matInput formControlName="phone" autocomplete="off">
+                                <mat-error *ngIf="form.phone.errors?.required">phone no. is reqiured</mat-error>
+                                <mat-error
+                                    *ngIf="form.phone.errors?.minlength || form.phone.errors?.maxlength || form.phone.errors?.pattern">
+                                    phone no. is invalid
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="second">
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>State</mat-label>
+                                <mat-select formControlName="state">
+                                    <mat-option>NONE</mat-option>
+                                    <mat-option *ngFor="let value of stateList" [value]='value?.state'>{{value?.state}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="form.state.errors?.required">state is reqiured</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>District</mat-label>
+                                <mat-select formControlName="district">
+                                    <mat-option>NONE</mat-option>
+                                    <mat-option *ngFor="let district of districts" [value]='district'>
+                                        {{district}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-hint *ngIf="form.state.errors?.required" align="end">select a state first</mat-hint>
+                                <mat-error *ngIf="form.district.errors?.required">district is reqiured</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Address</mat-label>
+                                <input matInput formControlName="address" autocomplete="off">
+                                <mat-error *ngIf="form.address.errors?.required">address is reqiured
+                                </mat-error>
+                                <mat-error *ngIf="form.address.errors?.minlength">address must have
+                                    atleast 10 characters</mat-error>
+                                <mat-error *ngIf="form.address.errors?.maxlength">address must have
+                                    less than 300 characters</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <mat-form-field appearance="fill" color="accent">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email" autocomplete="off">
+                                <mat-error *ngIf="form.email.errors?.required">email is reqiured
+                                </mat-error>
+                                <mat-error *ngIf="form.email.errors?.maxlength">email must have
+                                    less than 200 characters</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="field-container">
+                            <button mat-raised-button color="accent" type="submit">Signup now!</button>
+                        </div>
+                        <div class="last-container">
+                            already have an account! <a [routerLink]="'/user/login'" class="link">login now.</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

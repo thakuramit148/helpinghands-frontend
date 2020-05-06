@@ -1,0 +1,30 @@
+.header {
+  padding: 10px;
+  background-image: linear-gradient(#16191c, #414141);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.logo {
+  height: 70px;
+  width: 90px;
+}
+
+.items a {
+  color: white;
+  padding: 0px 20px;
+  text-decoration: none;
+}
+
+.items a:hover {
+  color: #19ce78;
+}
+
+.activeLink {
+  color: #19ce78 !important;
+  text-decoration: underline;
+}

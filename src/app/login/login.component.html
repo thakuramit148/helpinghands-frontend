@@ -1,0 +1,46 @@
+<div class="main-container">
+    <div class="sub-container-1" [style.background-image]="'url(' + image + ')'">
+        <div class="sub-container-1-inner">
+            <span>There is no exercise better for the</span>
+            <mat-icon color="accent">favorite</mat-icon>
+            <span>than reaching down & lifting people up</span>
+        </div>
+    </div>
+    <div class="sub-container-2">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <img src="assets/img/user.png" alt="logo">
+            <p>USER LOGIN</p>
+            <div class="field-container">
+                <mat-form-field appearance="fill" color="accent">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" autocomplete="off">
+                    <button mat-button matSuffix mat-icon-button *ngIf="form.username.value"
+                        (click)="reset('username')">
+                        <mat-icon color="warn">close</mat-icon>
+                    </button>
+                    <mat-error *ngIf="form.username.errors?.required">username is reqiured</mat-error>
+                    <mat-error *ngIf="form.username.errors?.minlength">username must have atleast 6
+                        characters</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field-container">
+                <mat-form-field appearance="fill" color="accent">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <div class="mat-button-container" mat-button mat-icon-button matSuffix (click)="hide = !hide">
+                        <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </div>
+                    <mat-error *ngIf="form.password.errors?.required">password is reqiured</mat-error>
+                    <mat-error *ngIf="form.password.errors?.minlength">password must have atleast 6
+                        characters</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="field-container">
+                <button mat-raised-button color="accent" type="submit">Login now!</button>
+            </div>
+        </form>
+        <div class="last-container">
+            don't have an account! <a [routerLink]="'/user/register'" class="link">create one now.</a>
+        </div>
+    </div>
+</div>

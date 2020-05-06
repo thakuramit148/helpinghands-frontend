@@ -1,0 +1,95 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  background-color: #16191c;
+}
+
+.sub-container-1 {
+  height: 100%;
+  width: 100%;
+  color: white;
+  background-color: #414141;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.sub-container-1-inner {
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(rgb(72, 65, 65), black);
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 40px;
+  letter-spacing: 3px;
+  font-family: Agency Fb;
+}
+
+.sub-container-1-inner .mat-icon {
+  font-size: 50px;
+  padding: 0 0 50px;
+}
+
+.sub-container-2 {
+  height: 100%;
+  padding: 50px;
+  background-color: #16191c;
+  text-align: center;
+}
+
+.sub-container-2 form img {
+  height: 80px;
+  width: 80px;
+  margin: 0 0 10px 0;
+}
+
+.sub-container-2 form p {
+  font-size: 30px;
+  letter-spacing: 3px;
+  font-family: Agency Fb;
+  color: white;
+}
+.mat-button-container{
+  cursor: pointer;
+}
+
+.mat-form-field {
+  margin: 10px auto;
+  display: blocks;
+  width: 400px;
+}
+
+.mat-form-field input {
+  color: white;
+}
+
+.mat-raised-button {
+  margin: 30px auto;
+  display: block;
+  width: 400px;
+}
+
+.last-container{
+  border-top: 1px solid white;
+  padding: 30px 0px;
+  text-align: right;
+  color: white;
+}
+
+.link{
+  cursor: pointer;
+  color: #19ce78;
+}
+
+.link:hover{
+  color :#69f0ae;
+}
