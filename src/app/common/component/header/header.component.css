@@ -1,12 +1,13 @@
 .header {
   padding: 10px;
-  background-image: linear-gradient(#16191c, #414141);
+  /* background-image: linear-gradient(#16191c, #414141); */
+  background-color: #16191c;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 9;
+  z-index: 999;
 }
 
 .logo {
@@ -27,4 +28,14 @@
 .activeLink {
   color: #19ce78 !important;
   text-decoration: underline;
+}
+
+.mat-stroked-button{
+  border-color: #19ce78;
+  background-color: #292c2e;
+}
+.mat-stroked-button:hover {
+  color: #121416;
+  font-weight: bolder;
+  background-color: #0c8048;
 }

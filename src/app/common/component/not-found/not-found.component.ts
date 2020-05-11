@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginStateService } from '../../service/login_state/login-state.service';
 
 @Component({
   selector: 'app-not-found',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./not-found.component.css']
 })
 export class NotFoundComponent implements OnInit {
+  image = 'assets/img/notfound.jpg';
 
-  constructor() { }
+  constructor(private loginStateService: LoginStateService) {
+  }
 
   ngOnInit() {
   }

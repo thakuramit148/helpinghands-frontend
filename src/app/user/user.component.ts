@@ -1,4 +1,8 @@
+import { LoginStateModel } from './../common/model/loginStateModel';
 import { Component, OnInit } from '@angular/core';
+import { LoginStateService } from '../common/service/login_state/login-state.service';
+import { Router } from '@angular/router';
+import { RU } from '../common/constants/roles';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginStateService: LoginStateService,
+    private router: Router
+  ) {
+    loginStateService.role = RU;
+  }
 
   ngOnInit() {
- }
+  }
 
 }

@@ -3,8 +3,17 @@
         <img class="logo" src="assets/img/logo.png" alt="helping hands">
     </span>
     <span class="items">
-        <a routerLink="/user" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink">home</a>
-        <a routerLink="/user/login" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink" >login</a>
-        <a routerLink="/user/register" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink" >signup</a>
+        <span *ngFor="let menu of menuItems[loginStateService.role]">
+            <span *ngIf="loginStateService.getLoginState()!=null ? true : false">
+                <a *ngFor="let link of menu.active" routerLink="{{link.routeLink}}"
+                    [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink">{{link.label}}</a>
+            </span>
+            <span *ngIf="loginStateService.getLoginState()==null ? true : false">
+                <a *ngFor="let link of menu.inactive" routerLink="{{link.routeLink}}"
+                    [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink">{{link.label}}</a>
+            </span>
+        </span>
+        <button mat-stroked-button color='accent'
+            *ngIf="loginStateService.getLoginState()!=null ? true : false" (click)="logout()">logout</button>
     </span>
 </div>

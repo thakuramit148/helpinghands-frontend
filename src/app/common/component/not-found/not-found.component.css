@@ -1,0 +1,37 @@
+.notfound {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1f5a40;
+    color: #161616;
+}
+
+.notfound-inner {
+  text-align: center;
+}
+
+h1 {
+  font-size: 100px;
+}
+
+h1,
+h2,
+p,
+a {
+  text-align: center;
+}
+
+p{
+    font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #19ce78;
+  background-color: #161616;
+}

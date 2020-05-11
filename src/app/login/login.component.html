@@ -8,8 +8,11 @@
     </div>
     <div class="sub-container-2">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
-            <img src="assets/img/user.png" alt="logo">
-            <p>USER LOGIN</p>
+            <img src="assets/img/{{userType}}.png" alt="logo">
+            <p *ngIf="userType==='user'">USER LOGIN</p>
+            <p *ngIf="userType==='organization'">ORGANIZATION LOGIN</p>
+            <p *ngIf="userType==='employee'">EMPLOYEE LOGIN</p>
+            <p *ngIf="userType==='admin'">ADMIN LOGIN</p>
             <div class="field-container">
                 <mat-form-field appearance="fill" color="accent">
                     <mat-label>Username</mat-label>
@@ -39,8 +42,10 @@
                 <button mat-raised-button color="accent" type="submit">Login now!</button>
             </div>
         </form>
-        <div class="last-container">
-            don't have an account! <a [routerLink]="'/user/register'" class="link">create one now.</a>
+        <div class="last-container" *ngIf="userType==='user' || userType==='organization'">
+            don't have an account! 
+            <a *ngIf="userType==='user'" [routerLink]="'/user/register'" class="link">create one now.</a>
+            <a *ngIf="userType==='organization'" [routerLink]="'/organization/register'" class="link">create one now.</a>
         </div>
     </div>
 </div>

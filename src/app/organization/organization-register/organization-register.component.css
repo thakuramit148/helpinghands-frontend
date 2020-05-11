@@ -1,0 +1,94 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    background-color: #16191c;
+  }
+  
+  .sub-container-1 {
+    height: 100%;
+    width: 100%;
+    color: white;
+    background-color: #414141;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .sub-container-1-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .signup-container {
+    background-color: #0a0d0e;
+    display: flex;
+  }
+  
+  .first {
+    padding: 30px 30px 10px 60px;
+  }
+  
+  .first img {
+    height: 80px;
+    width: 80px;
+    margin: 0 0 20px 0;
+  }
+  
+  .first p {
+    font-weight: lighter;
+    font-family: Agency Fb;
+    font-size: 40px;
+    letter-spacing: 3px;
+    padding-bottom: 10px;
+  }
+  
+  .second {
+    padding: 35px 60px 10px 30px;
+  }
+  
+  .mat-form-field {
+    margin: 10px auto;
+    display: blocks;
+    width: 300px;
+  }
+  
+  .mat-form-field input {
+    color: white;
+  }
+  
+  .mat-form-field input {
+    color: white;
+  }
+  
+  .mat-raised-button {
+    margin: 30px auto;
+    display: block;
+    width: 300px;
+  }
+  
+  .last-container {
+    border-top: 1px solid white;
+    margin: 40px 0px 0px;
+    padding: 20px 0px;
+    text-align: right;
+    color: white;
+  }
+  
+  
+  .link {
+    cursor: pointer;
+    color: #19ce78;
+  }
+  
+  .link:hover {
+    color: #69f0ae;
+  }

@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { StatesAndDistricts } from '../../common/constants/states-and-district';
+import { LoginStateService } from 'src/app/common/service/login_state/login-state.service';
+import { Router } from '@angular/router';
+import { LoginStateModel } from 'src/app/common/model/loginStateModel';
+import { RU } from '../../common/constants/roles';
 
 @Component({
   selector: 'app-user-register',
@@ -9,19 +13,28 @@ import { StatesAndDistricts } from '../../common/constants/states-and-district';
 })
 export class UserRegisterComponent implements OnInit {
 
-  @Input() userType: string;
   signupForm: FormGroup;
-  hide = true;
   image = 'assets/img/bg1.png';
   stateList = StatesAndDistricts;
   districts = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private loginStateService: LoginStateService,
+    private router: Router
+  ) {
+    const loginStateModel: LoginStateModel = this.loginStateService.getLoginState();
+    if (loginStateModel !== null) {
+      this.router.navigate(['/' + loginStateModel.role]);
+      return;
+    }
+    loginStateService.role = RU;
     this.signupForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       confPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[1-9][0-9]{9}')]],
+      fullname: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       state: ['', [Validators.required]],
       district: ['', [Validators.required]],
       address: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(300)]],
@@ -31,6 +44,7 @@ export class UserRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getDistrict();
+
   }
 
   get form() {
