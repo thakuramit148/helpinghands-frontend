@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginStateModel } from '../../model/loginStateModel';
+import { LoginStateModel } from '../../model/login/LoginStateModel';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class LoginStateService {
 
   destroySession(role: string) {
     sessionStorage.removeItem('loginState');
+    sessionStorage.removeItem('TOKEN');
     this.role = role;
   }
 

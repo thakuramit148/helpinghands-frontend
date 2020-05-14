@@ -7,9 +7,16 @@ import { LoginStateService } from '../../service/login_state/login-state.service
   styleUrls: ['./not-found.component.css']
 })
 export class NotFoundComponent implements OnInit {
+  
   image = 'assets/img/notfound.jpg';
 
   constructor(private loginStateService: LoginStateService) {
+    const role = loginStateService.getLoginState();
+    if (role !== null) {
+      loginStateService.role = role.role;
+    } else {
+      loginStateService.role = 'user';
+    }
   }
 
   ngOnInit() {

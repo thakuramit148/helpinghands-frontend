@@ -1,4 +1,3 @@
-import { LoginStateModel } from './../common/model/loginStateModel';
 import { Component, OnInit } from '@angular/core';
 import { LoginStateService } from '../common/service/login_state/login-state.service';
 import { Router } from '@angular/router';

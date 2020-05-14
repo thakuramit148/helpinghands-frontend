@@ -1,10 +1,16 @@
+import { LoginComponent } from './../../login/login.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { StatesAndDistricts } from '../../common/constants/states-and-district';
 import { LoginStateService } from 'src/app/common/service/login_state/login-state.service';
 import { Router } from '@angular/router';
-import { LoginStateModel } from 'src/app/common/model/loginStateModel';
 import { RU } from '../../common/constants/roles';
+import { LoginStateModel } from 'src/app/common/model/login/LoginStateModel';
+import { UserModel } from '../../common/model/user/UserModel';
+import { UserService } from '../../common/service/user_service/user.service';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { LoadingComponent } from 'src/app/common/component/loading/loading.component';
+import { SnackbarComponent } from 'src/app/common/component/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-user-register',
@@ -21,7 +27,10 @@ export class UserRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginStateService: LoginStateService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog,
   ) {
     const loginStateModel: LoginStateModel = this.loginStateService.getLoginState();
     if (loginStateModel !== null) {
@@ -30,7 +39,7 @@ export class UserRegisterComponent implements OnInit {
     }
     loginStateService.role = RU;
     this.signupForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]+')]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       confPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(40)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[1-9][0-9]{9}')]],
@@ -44,19 +53,10 @@ export class UserRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getDistrict();
-
   }
 
   get form() {
     return this.signupForm.controls;
-  }
-
-  signup() {
-    if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
-    } else {
-      console.log('error');
-    }
   }
 
   reset(field: string) {
@@ -71,5 +71,58 @@ export class UserRegisterComponent implements OnInit {
         this.districts = this.stateList.find(data => data.state === value).districts;
       }
     });
+  }
+
+  async signup() {
+    if (this.signupForm.valid) {
+      let userModel: UserModel = new UserModel();
+      userModel.id = 0;
+      userModel.username = this.form.username.value;
+      userModel.password = this.form.password.value;
+      userModel.fullname = this.form.fullname.value;
+      userModel.email = this.form.email.value;
+      userModel.phone = this.form.phone.value;
+      userModel.address = this.form.address.value.trim() + ', '
+        + this.form.state.value + ', ' + this.form.district.value;
+      userModel.active = true;
+
+      let panelClass = 'flex2';
+      let snackbarMsg = '';
+      let snackbarRef = null;
+      this.snackbar.dismiss();
+      const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
+      let resp = null;
+      try {
+        resp = await this.userService.addUser(userModel);
+        userModel = resp.body.data;
+        if (userModel != null && userModel.id > 0) {
+          snackbarMsg = 'Your data has been successfully registered!';
+          this.router.navigate(['/user/login']);
+        } else {
+          snackbarMsg = 'Sorry! something went wrong, please try again';
+          panelClass = 'flex1';
+        }
+      } catch (error) {
+        const e = error.error.error;
+        if (e) {
+          snackbarMsg = 'Error! ' + error.error.code + ' - ' + e[0].errorMessage;
+        } else {
+          snackbarMsg = error.error.message;
+        }
+        panelClass = 'flex1';
+      } finally {
+        dialogRef.close();
+      }
+      if (snackbarMsg) {
+        snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
+          {
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center',
+            data: snackbarMsg,
+            duration: 10000,
+            panelClass
+          });
+      }
+    }
   }
 }

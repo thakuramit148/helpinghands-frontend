@@ -17,7 +17,8 @@
 
 .items a {
   color: white;
-  padding: 0px 20px;
+  padding: 0px;
+  padding-right: 15px;
   text-decoration: none;
 }
 
@@ -30,12 +31,12 @@
   text-decoration: underline;
 }
 
-.mat-stroked-button{
-  border-color: #19ce78;
-  background-color: #292c2e;
+.userlogo {
+  cursor: pointer;
+  padding-right: 10px;
 }
-.mat-stroked-button:hover {
-  color: #121416;
-  font-weight: bolder;
-  background-color: #0c8048;
+
+.userlogoimg {
+  width: 20px;
+  height: 20px;
 }

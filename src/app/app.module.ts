@@ -19,6 +19,12 @@ import { AuthGuard } from './auth.guard';
 import { AdminManageUserComponent } from './admin/admin-manage-user/admin-manage-user.component';
 import { AdminManageOrganizationComponent } from './admin/admin-manage-organization/admin-manage-organization.component';
 import { AdminReportsComponent } from './admin/admin-reports/admin-reports.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SnackbarComponent } from './common/component/snackbar/snackbar.component';
+import { MAT_SNACK_BAR_DATA } from '@angular/material';
+import { LoadingComponent } from './common/component/loading/loading.component';
+import { ChangePasswordComponent } from './common/component/change-password/change-password.component';
+import { ProfileComponent } from './common/component/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,11 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     AdminReportsComponent,
     AdminManageUserComponent,
     AdminManageOrganizationComponent,
-    AdminReportsComponent
+    AdminReportsComponent,
+    SnackbarComponent,
+    LoadingComponent,
+    ChangePasswordComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +56,10 @@ import { AdminReportsComponent } from './admin/admin-reports/admin-reports.compo
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
+    HttpClientModule,
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, { provide: MAT_SNACK_BAR_DATA, useValue: {} }],
+  bootstrap: [AppComponent],
+  entryComponents: [SnackbarComponent, LoadingComponent, ChangePasswordComponent, ProfileComponent]
 })
 export class AppModule { }

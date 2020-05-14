@@ -13,7 +13,14 @@
                     [routerLinkActiveOptions]="{exact: true}" routerLinkActive="activeLink">{{link.label}}</a>
             </span>
         </span>
-        <button mat-stroked-button color='accent'
-            *ngIf="loginStateService.getLoginState()!=null ? true : false" (click)="logout()">logout</button>
+        <span class="userlogo" *ngIf="loginStateService.getLoginState()!=null ? true : false" [matMenuTriggerFor]="matMenu">
+            <img class="userlogoimg" src="assets/img/user.png" alt="username">
+        </span>
     </span>
 </div>
+
+<mat-menu #matMenu>
+    <span mat-menu-item (click)="profile()">{{loginStateService.getLoginState()?.username}}</span>
+    <span mat-menu-item (click)="changePassword()">change password</span>
+    <span mat-menu-item (click)="logout()">logout</span>
+</mat-menu>
