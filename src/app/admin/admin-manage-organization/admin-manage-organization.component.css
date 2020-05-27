@@ -1,13 +1,51 @@
+.parent-container {
+  background-color: #353535;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.main-container {
+  padding: 0px;
+  padding-bottom: 20px;
+  background-color: #292929;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.conatiner-header {
+  color: white;
+  background-color: #16191c;
+  padding: 10px 10px;
+  font-size: 20px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.inner-conatiner {
+  padding: 10px 30px 20px;
+  background-color: #383737;
+}
+
 table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
-  
+  width: 100%;
+}
+
+.highlight {
+  background-color: #0d8048;
+  font-size: 15px;
+}
+
+.evenrow {
+  background-color: #3b3a3a;
+}
+
+.mat-row:hover {
+  background-color: #333333;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-cell{
+  padding-right: 10px;
+}

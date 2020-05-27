@@ -1,0 +1,40 @@
+<div class="sub-container-2">
+    <form [formGroup]="donationForm" (ngSubmit)="donate()">
+        <p>Donating to {{orgDetailModel.fullname}}</p>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Drop Type</mat-label>
+                <mat-select formControlName="dropType">
+                    <mat-option>NONE</mat-option>
+                    <mat-option [value]="'Self'">Self</mat-option>
+                    <mat-option [value]="'Pickup'">Pickup</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.dropType.errors?.required">drop type is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category" multiple>
+                    <mat-option *ngFor="let value of categories" [value]='value?.id'>{{value?.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.category.errors?.required">category is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description">
+                <mat-error *ngIf="form.description.errors?.required">description is reqiured</mat-error>
+                <mat-error *ngIf="form.description.errors?.minlength">description must have atleast 20
+                    characters</mat-error>
+                <mat-error *ngIf="form.description.errors?.maxlength">description must have less than 300
+                    characters</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <button mat-raised-button color="accent" type="submit">Donate Now!</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+<div class="sub-container-2">
+    <form [formGroup]="addForm" (ngSubmit)="addAddress()">
+        <p>Address Details</p>
+        <div class="field-container" *ngIf="data">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id" autocomplete="off">
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>State</mat-label>
+                <mat-select formControlName="state">
+                    <mat-option>NONE</mat-option>
+                    <mat-option *ngFor="let value of stateList" [value]='value?.state'>{{value?.state}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.state.errors?.required">state is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>District</mat-label>
+                <mat-select formControlName="district">
+                    <mat-option>NONE</mat-option>
+                    <mat-option *ngFor="let district of districts" [value]='district'>
+                        {{district}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint *ngIf="form.state.errors?.required" align="end">select a state first
+                </mat-hint>
+                <mat-error *ngIf="form.district.errors?.required">district is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" autocomplete="off">
+                <mat-error *ngIf="form.address.errors?.required">address is reqiured
+                </mat-error>
+                <mat-error *ngIf="form.address.errors?.minlength">address must have
+                    atleast 20 characters</mat-error>
+                <mat-error *ngIf="form.address.errors?.maxlength">address must have
+                    less than 200 characters</mat-error>
+                <mat-error *ngIf="form.address.errors?.pattern">address is invalid,
+                    only (0-9a-zA-z .-/\) are allowed</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container active-container" *ngIf="data">
+            <span>Active status of the address</span>
+            <mat-slide-toggle color="accent" (change)="changeActiveStatus()" [checked]="getActiveStatus()">
+            </mat-slide-toggle>
+        </div>
+        <div class="field-container">
+            <button mat-raised-button *ngIf="data" color="accent" type="submit" >Update Now!</button>
+            <button mat-raised-button *ngIf="!data" color="accent" type="submit" >Add Now!</button>
+        </div>
+    </form>
+</div>

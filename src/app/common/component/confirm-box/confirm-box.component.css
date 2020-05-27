@@ -1,0 +1,53 @@
+.cofirm-box {
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  color: #112121;
+}
+
+.body {
+  width: 500px;
+  font-size: 18px;
+  padding: 50px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer {
+  height: 50px;
+  color: white;
+  display: flex;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.yes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d8048;
+  height: 100%;
+  width: 50%;
+}
+
+.yes:hover {
+  cursor: pointer;
+  background-color: #07502d;
+}
+
+.no {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f44336;
+  height: 100%;
+  width: 50%;
+}
+
+.no:hover {
+  cursor: pointer;
+  background-color: #d11c0f;
+}

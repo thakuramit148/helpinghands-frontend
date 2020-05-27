@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+  }
+  
+  .detail-body {
+      background-color: #424242;
+      width: 500px;
+  }
+  
+  .detail-header>h5 {
+    margin: 0px;
+    padding: 10px;
+    background-color: #16221f;
+  }
+  
+  .contact-us-body {
+    border: 1px solid gray;
+    margin: 10px;
+    padding: 20px;
+    background-color: #084c21;
+  }
+  
+  .address-body {
+    border: 1px solid gray;
+    margin: 0px 10px 10px;
+    padding: 20px;
+    background-color: #084c21;
+  }
+  

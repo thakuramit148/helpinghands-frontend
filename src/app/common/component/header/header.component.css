@@ -1,15 +1,19 @@
 .header {
   padding: 10px;
   /* background-image: linear-gradient(#16191c, #414141); */
+  width: 100%;
   background-color: #16191c;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 999;
 }
 
+.header-padding{
+  height: 90px;
+}
 .logo {
   height: 70px;
   width: 90px;
@@ -39,4 +43,8 @@
 .userlogoimg {
   width: 20px;
   height: 20px;
+}
+
+.admin-title{
+  color: gray;
 }

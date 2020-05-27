@@ -1,0 +1,16 @@
+<div class="detail-body">
+    <div class="detail-header">
+        <h5>{{orgModel.fullname}}</h5>
+    </div>
+    <div class="contact-us-body">
+        <h6>Contact us</h6>
+        <p>Email : {{orgModel.email}}</p>
+        <p>Phone : {{orgModel.phone}}</p>
+    </div>
+    <div class="address-body">
+        <h6>Address</h6>
+        <div *ngFor="let address of orgModel.address; index as i">
+            <p>{{address.area}}, {{address.state}}, {{address.city}}</p>
+        </div>
+    </div>
+</div>

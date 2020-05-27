@@ -14,13 +14,16 @@
             </span>
         </span>
         <span class="userlogo" *ngIf="loginStateService.getLoginState()!=null ? true : false" [matMenuTriggerFor]="matMenu">
-            <img class="userlogoimg" src="assets/img/user.png" alt="username">
+            <img class="userlogoimg" *ngIf="!isRoleAdmin()" src="assets/img/{{loginStateService.role}}.png" alt="username">
+            <span *ngIf="isRoleAdmin()" class="admin-title">{{loginStateService.getLoginState()?.username}}</span>
         </span>
     </span>
 </div>
+<div class="header-padding">
+</div>
 
 <mat-menu #matMenu>
-    <span mat-menu-item (click)="profile()">{{loginStateService.getLoginState()?.username}}</span>
+    <span mat-menu-item *ngIf="!isRoleAdmin()" (click)="profile()">{{loginStateService.getLoginState()?.username}}</span>
     <span mat-menu-item (click)="changePassword()">change password</span>
     <span mat-menu-item (click)="logout()">logout</span>
 </mat-menu>

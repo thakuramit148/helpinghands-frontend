@@ -1,0 +1,19 @@
+<div class="sub-container-2">
+    <form [formGroup]="catForm" (ngSubmit)="addCategory()">
+        <p>Manage Category</p>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option>NONE</mat-option>
+                    <mat-option *ngFor="let value of categoryList" [value]='value?.id'>{{value?.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.category.errors?.required">state is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+          <div class="field-container">
+            <button mat-raised-button color="accent" type="submit" >Add Now!</button>
+        </div>
+    </form>
+</div>

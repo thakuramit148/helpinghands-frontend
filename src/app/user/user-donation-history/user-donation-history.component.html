@@ -1,0 +1,73 @@
+<div class="parent-container container-fluid">
+    <div class="mat-elevation-z20 container main-container">
+        <div class="conatiner-header"> Your Donations Details </div>
+        <div class="inner-conatiner">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Search</mat-label>
+                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Type something here"
+                    style="color:white">
+                <mat-icon color="accent" matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <table mat-table class="mat-elevation-z21" [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dropType">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Drop type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dropType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="donationDate">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Request date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.donationDate}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="donationReceivedDate">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Received date </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.donationReceivedDate ? element.donationReceivedDate : '-'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="donated">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Donated </th>
+                    <td mat-cell *matCellDef="let element"> {{element.donated?'Donated!':'Not yet!' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="categoriesNames">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Categories name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.categoriesNames}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fullname">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> Organization name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.orgName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef class="highlight"> </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button class="details-btn" (click)="showDetails(element)">Details</button>
+                        <button mat-raised-button color="warn" class="decline-btn"
+                            *ngIf="element.status !== 'Completed' && element.status !== 'Canceled' 
+                            && element.status !== 'Declined' && element.dropType !== 'Self' "
+                            (click)="updateStatus(element,'Canceled')">Cancel</button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row [ngClass]="{'evenrow': index%2 == 1}"
+                    *matRowDef="let row; columns: displayedColumns; let index=index"></tr>
+            </table>
+            <mat-paginator color="accent" [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>

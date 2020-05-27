@@ -3,11 +3,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginStateService } from 'src/app/common/service/login_state/login-state.service';
 import { Router } from '@angular/router';
 import { LoginStateModel } from 'src/app/common/model/login/LoginStateModel';
-import { OrganizationModel } from '../../common/model/organization/OrganizationModel';
 import { OrganizationService } from 'src/app/common/service/organization_service/organization.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { LoadingComponent } from 'src/app/common/component/loading/loading.component';
 import { SnackbarComponent } from 'src/app/common/component/snackbar/snackbar.component';
+import { OrgWithPasswordModel } from '../../common/model/organization/OrgWithPasswordModel';
+import { getErrorMessage } from 'src/app/common/constants/error-message';
+import { getSnackbarProperties } from 'src/app/common/constants/snackbar-property';
+import { NO_RESP } from '../../common/constants/error-message';
 
 @Component({
   selector: 'app-organization-register',
@@ -39,7 +42,7 @@ export class OrganizationRegisterComponent implements OnInit {
       fullname: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('[1-9][0-9]{9}')]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
-      description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(300)]],
+      description: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(200)]],
     });
   }
 
@@ -56,7 +59,7 @@ export class OrganizationRegisterComponent implements OnInit {
 
   async signup() {
     if (this.signupForm.valid) {
-      let orgModel: OrganizationModel = new OrganizationModel();
+      let orgModel: OrgWithPasswordModel = new OrgWithPasswordModel();
       orgModel.id = 0;
       orgModel.username = this.form.username.value;
       orgModel.password = this.form.password.value;
@@ -67,43 +70,31 @@ export class OrganizationRegisterComponent implements OnInit {
       orgModel.active = false;
       orgModel.verified = false;
 
-      let panelClass = 'flex2';
+      let panelClass = 'green';
       let snackbarMsg = '';
       let snackbarRef = null;
       this.snackbar.dismiss();
       const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
       let resp = null;
       try {
-        resp = await this.orgService.addOrganization(orgModel);
+        resp = await this.orgService.add(orgModel);
         orgModel = resp.body.data;
         if (orgModel != null && orgModel.id > 0) {
           snackbarMsg = 'Your data has been successfully registered!';
           this.router.navigate(['/organization/login']);
         } else {
-          snackbarMsg = 'Sorry! something went wrong, please try again';
-          panelClass = 'flex1';
+          snackbarMsg = NO_RESP;
+          panelClass = 'red';
         }
-      } catch (error) {
-        const e = error.error.error;
-        console.log(e);
-        if (e) {
-          snackbarMsg = 'Error! ' + error.error.code + ' - ' + e[0].errorMessage;
-        } else {
-          snackbarMsg = error.error.message;
-        }
-        panelClass = 'flex1';
+      } catch (ex) {
+        snackbarMsg = getErrorMessage(ex);
+        panelClass = 'red';
       } finally {
         dialogRef.close();
       }
       if (snackbarMsg) {
         snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-          {
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center',
-            data: snackbarMsg,
-            duration: 10000,
-            panelClass
-          });
+          getSnackbarProperties(snackbarMsg, panelClass));
       }
     }
   }

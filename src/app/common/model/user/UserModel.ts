@@ -5,7 +5,6 @@ export class UserModel {
     email: string;
     phone: string;
     address: string;
-    password: string;
     active: boolean;
 
     constructor() { }

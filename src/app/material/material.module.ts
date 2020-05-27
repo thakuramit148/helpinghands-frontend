@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {
   MatButtonModule, MatSelectModule, MatSnackBarModule, MatDialogModule,
-  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatMenuModule
+  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatSortModule, MatSlideToggleModule, MatTooltipModule
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
@@ -18,7 +18,11 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatTableModule,
   MatPaginatorModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatSlideToggleModule,
+  MatTooltipModule
 ];
 
 @NgModule({

@@ -6,11 +6,14 @@ import { LoginStateService } from 'src/app/common/service/login_state/login-stat
 import { Router } from '@angular/router';
 import { RU } from '../../common/constants/roles';
 import { LoginStateModel } from 'src/app/common/model/login/LoginStateModel';
-import { UserModel } from '../../common/model/user/UserModel';
 import { UserService } from '../../common/service/user_service/user.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { LoadingComponent } from 'src/app/common/component/loading/loading.component';
 import { SnackbarComponent } from 'src/app/common/component/snackbar/snackbar.component';
+import { UserWithPasswordModel } from 'src/app/common/model/user/UserWithPasswordModel';
+import { getErrorMessage } from 'src/app/common/constants/error-message';
+import { NO_RESP } from '../../common/constants/error-message';
+import { getSnackbarProperties } from 'src/app/common/constants/snackbar-property';
 
 @Component({
   selector: 'app-user-register',
@@ -46,7 +49,7 @@ export class UserRegisterComponent implements OnInit {
       fullname: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       state: ['', [Validators.required]],
       district: ['', [Validators.required]],
-      address: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(300)]],
+      address: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
     });
   }
@@ -75,53 +78,42 @@ export class UserRegisterComponent implements OnInit {
 
   async signup() {
     if (this.signupForm.valid) {
-      let userModel: UserModel = new UserModel();
-      userModel.id = 0;
-      userModel.username = this.form.username.value;
-      userModel.password = this.form.password.value;
-      userModel.fullname = this.form.fullname.value;
-      userModel.email = this.form.email.value;
-      userModel.phone = this.form.phone.value;
-      userModel.address = this.form.address.value.trim() + ', '
+      let userWithPasswordModel: UserWithPasswordModel = new UserWithPasswordModel();
+      userWithPasswordModel.id = 0;
+      userWithPasswordModel.username = this.form.username.value;
+      userWithPasswordModel.password = this.form.password.value;
+      userWithPasswordModel.fullname = this.form.fullname.value;
+      userWithPasswordModel.email = this.form.email.value;
+      userWithPasswordModel.phone = this.form.phone.value;
+      userWithPasswordModel.address = this.form.address.value.trim() + ', '
         + this.form.state.value + ', ' + this.form.district.value;
-      userModel.active = true;
+      userWithPasswordModel.active = true;
 
-      let panelClass = 'flex2';
+      let panelClass = 'green';
       let snackbarMsg = '';
       let snackbarRef = null;
       this.snackbar.dismiss();
       const dialogRef = this.dialog.open(LoadingComponent, { disableClose: true });
       let resp = null;
       try {
-        resp = await this.userService.addUser(userModel);
-        userModel = resp.body.data;
-        if (userModel != null && userModel.id > 0) {
+        resp = await this.userService.add(userWithPasswordModel);
+        userWithPasswordModel = resp.body.data;
+        if (userWithPasswordModel != null && userWithPasswordModel.id > 0) {
           snackbarMsg = 'Your data has been successfully registered!';
           this.router.navigate(['/user/login']);
         } else {
-          snackbarMsg = 'Sorry! something went wrong, please try again';
-          panelClass = 'flex1';
+          snackbarMsg = NO_RESP;
+          panelClass = 'red';
         }
-      } catch (error) {
-        const e = error.error.error;
-        if (e) {
-          snackbarMsg = 'Error! ' + error.error.code + ' - ' + e[0].errorMessage;
-        } else {
-          snackbarMsg = error.error.message;
-        }
-        panelClass = 'flex1';
+      } catch (ex) {
+        snackbarMsg = getErrorMessage(ex);
+        panelClass = 'red';
       } finally {
         dialogRef.close();
       }
       if (snackbarMsg) {
         snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-          {
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center',
-            data: snackbarMsg,
-            duration: 10000,
-            panelClass
-          });
+          getSnackbarProperties(snackbarMsg, panelClass));
       }
     }
   }

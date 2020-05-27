@@ -5,6 +5,22 @@ export const menuItems = {
                 {
                     label: 'Home',
                     routeLink: '/user'
+                },
+                {
+                    label: 'Organization',
+                    routeLink: '/user/organization'
+                },
+                {
+                    label: 'Donation History',
+                    routeLink: '/user/donation-history'
+                },
+                {
+                    label: 'Volunteer',
+                    routeLink: '/user/volunteer-task'
+                },
+                {
+                    label: 'Pickup Tasks',
+                    routeLink: '/user/pick-task'
                 }
             ]
         },
@@ -13,6 +29,10 @@ export const menuItems = {
                 {
                     label: 'Home',
                     routeLink: '/user'
+                },
+                {
+                    label: 'Organization',
+                    routeLink: '/user/organization'
                 },
                 {
                     label: 'Login',
@@ -31,7 +51,15 @@ export const menuItems = {
                 {
                     label: 'Home',
                     routeLink: '/organization'
-                }
+                },
+                {
+                    label: 'Manage Employees',
+                    routeLink: '/organization/manage-employee'
+                },
+                {
+                    label: 'Manage User Donations',
+                    routeLink: '/organization/manage-user-donation'
+                },
             ]
         },
         {
@@ -53,6 +81,10 @@ export const menuItems = {
                 {
                     label: 'Home',
                     routeLink: '/employee'
+                },
+                {
+                    label: 'Pickup Tasks',
+                    routeLink: '/employee/pickup-tasks'
                 }
             ]
         },

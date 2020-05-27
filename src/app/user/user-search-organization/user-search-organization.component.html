@@ -1,0 +1,66 @@
+<div class="main-sub-container">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="search-container">
+            <div class="field-container">
+                <mat-form-field color="accent">
+                    <mat-label>State</mat-label>
+                    <mat-select formControlName="state" multiple>
+                        <mat-option *ngFor="let value of stateList" [value]='value?.state'>{{value?.state}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="field-container">
+                <mat-form-field color="accent">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category" multiple>
+                        <mat-option *ngFor="let value of categories" [value]='value?.id'>{{value?.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="field-container" class="fab-clear" *ngIf="clearButton">
+                <button mat-mini-fab color="warn" (click)="onClear()">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </div>
+            <div class="field-container">
+                <button mat-fab class="fab-search" (click)="formSubmit=true">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h4 class="header-h4">{{searchTitle}}</h4>
+    <div class="card" *ngFor="let org of orgDetails">
+        <div class="card-header header-title">
+            <span>{{org.fullname}}</span>
+        </div>
+        <div class="card-body">
+            <div class="card-child sub-child">
+                <div>
+                    <span class="sub-title">Categories</span><br>
+                    <p class="no-category-card-" *ngIf="org.categories.length === 0">No categories has been added yet!
+                    </p>
+                    <p class="category-card" *ngFor="let cat of org.categories">{{cat}}</p>
+                </div>
+                <p class="ratings-card"><span class="sub-title">Ratings : </span>{{org.ratings}}</p>
+            </div>
+            <div class="card-child main-child">
+                <p><span class="sub-title">Description</span><br>{{org.description}}</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div>
+                <button mat-button class="volunteer-btn" (click)="openVolunteerBox(org)">Volunteer now!</button>
+            </div>
+            <div>
+                <button mat-raised-button class="detail-btn" (click)="openDetailBox(org)">Details</button>
+                <button mat-raised-button class="donate-btn" [disabled]="org.categories.length === 0"
+                    (click)="openDonationBox(org)">Donate</button>
+            </div>
+        </div>
+    </div>
+</div>

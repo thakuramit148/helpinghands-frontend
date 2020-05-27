@@ -8,6 +8,8 @@ import { SnackbarComponent } from '../common/component/snackbar/snackbar.compone
 import { LoadingComponent } from '../common/component/loading/loading.component';
 import { LoginStateModel } from '../common/model/login/LoginStateModel';
 import { LoginModel } from '../common/model/login/LoginModel';
+import { getErrorMessage, NO_RESP } from '../common/constants/error-message';
+import { getSnackbarProperties } from '../common/constants/snackbar-property';
 
 @Component({
   selector: 'app-login',
@@ -52,14 +54,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (this.loginForm.valid) {
-      // if (code === 1) {
-      //   const url: any[] = ['/' + this.loginStateService.getLoginState().role];
-      //   this.router.navigate(url);
-      // } else if (code === 2) {
-      //   console.log('invalid credentials');
-      // } else {
-      //   console.log('sorry you are deactivated');
-      // }
+      let panelClass = 'green';
       let snackbarMsg = '';
       let snackbarRef = null;
       let loginStateModel: LoginStateModel;
@@ -81,28 +76,21 @@ export class LoginComponent implements OnInit {
             } else {
               snackbarMsg = 'sorry you have been blocked! please contact the admin';
             }
+            panelClass = 'red';
           }
         } else {
-          snackbarMsg = 'something went wrong';
+          snackbarMsg = NO_RESP;
+          panelClass = 'red';
         }
-      } catch (error) {
-        if (+error.status === 401) {
-          snackbarMsg = 'invalid credentials';
-        } else {
-          snackbarMsg = 'sorry the server cannot be reached at the moment';
-        }
+      } catch (ex) {
+        snackbarMsg = getErrorMessage(ex, 'login');
+        panelClass = 'red';
       } finally {
         dialogRef.close();
       }
       if (snackbarMsg) {
         snackbarRef = this.snackbar.openFromComponent(SnackbarComponent,
-          {
-            verticalPosition: 'bottom',
-            horizontalPosition: 'center',
-            data: snackbarMsg,
-            duration: 10000,
-            panelClass: 'flex1'
-          });
+          getSnackbarProperties(snackbarMsg, panelClass));
       }
     }
   }
