@@ -64,7 +64,6 @@ export class OrganizationProfileUpdateComponent implements OnInit {
   addNewAddress() {
     const dialogRef = this.dialog.open(OrganizationAddressComponent);
     dialogRef.afterClosed().toPromise().then(data => {
-      console.log(data);
       if (data) {
         this.orgUpdateModel.address.push(data);
       }

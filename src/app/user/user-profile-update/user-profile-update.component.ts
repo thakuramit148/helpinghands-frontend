@@ -35,6 +35,8 @@ export class UserProfileUpdateComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UserModel
   ) {
     this.userModel = data;
+    console.log(this.userModel.address);
+    
     this.addressArray = this.userModel.address.split('<>');
     const address = this.addressArray[0];
     this.state = this.addressArray[1].split('--')[0].trim();

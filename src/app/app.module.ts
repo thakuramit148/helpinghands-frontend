@@ -2,6 +2,7 @@ import { HttpInterceptorService } from './common/service/http_interceptor/http-i
 import { MaterialModule } from './material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { AppRoutingModule, routingComponent } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,9 @@ import { UserDonationHistoryComponent } from './user/user-donation-history/user-
 import { UserVolunteerTasksComponent } from './user/user-volunteer-tasks/user-volunteer-tasks.component';
 import { EmployeePickupTasksComponent } from './employee/employee-pickup-tasks/employee-pickup-tasks.component';
 import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-tasks.component';
+import { OrganizationEventComponent } from './organization/organization-event/organization-event.component';
+import { DatePipe } from '@angular/common';
+import { EmployeeEventsComponent } from './employee/employee-events/employee-events.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +87,9 @@ import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-t
     UserDonationHistoryComponent,
     UserVolunteerTasksComponent,
     EmployeePickupTasksComponent,
-    UserPickupTasksComponent
+    UserPickupTasksComponent,
+    OrganizationEventComponent,
+    EmployeeEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +98,7 @@ import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-t
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
+    FullCalendarModule
   ],
   providers: [
     AuthGuard,
@@ -103,7 +110,8 @@ import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-t
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -119,7 +127,8 @@ import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-t
     OrganizationDetailsComponent,
     UserDonationComponent,
     DonationDetailsComponent,
-    ConfirmBoxComponent
+    ConfirmBoxComponent,
+    OrganizationEventComponent
   ]
 })
 export class AppModule { }

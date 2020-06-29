@@ -49,7 +49,7 @@ export class UserRegisterComponent implements OnInit {
       fullname: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100), Validators.pattern('[a-zA-Z ]+')]],
       state: ['', [Validators.required]],
       district: ['', [Validators.required]],
-      address: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+      address: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(200)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
     });
   }
@@ -85,8 +85,8 @@ export class UserRegisterComponent implements OnInit {
       userWithPasswordModel.fullname = this.form.fullname.value;
       userWithPasswordModel.email = this.form.email.value;
       userWithPasswordModel.phone = this.form.phone.value;
-      userWithPasswordModel.address = this.form.address.value.trim() + ', '
-        + this.form.state.value + ', ' + this.form.district.value;
+      userWithPasswordModel.address = this.form.address.value.trim() + '<>'
+        + this.form.state.value + '--' + this.form.district.value;
       userWithPasswordModel.active = true;
 
       let panelClass = 'green';

@@ -1,0 +1,45 @@
+.search-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #212529;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+}
+
+.field-container {
+  padding-left: 20px;
+}
+
+.fab-search {
+  background-color: #0c7031;
+}
+
+.add-title {
+  color: white;
+  font-size: 16px;
+  padding-right: 20px;
+}
+
+.sub-conatiner {
+  padding: 40px 40px 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.calendar-container {
+  width:55%;
+}
+
+.event-details {
+  background-color: #212529;
+  color: white;
+  margin-left: 50px;
+  width: 25%;
+  padding: 10px;
+}
+
+.field{
+  font-size: 20px;
+  color: bisque;
+}

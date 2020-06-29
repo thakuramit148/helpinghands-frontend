@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
     private router: Router
   ) {
     loginStateService.role = RA;
+    router.navigate(['/admin/manage-user']);
   }
 
   ngOnInit() {

@@ -49,7 +49,7 @@ export const menuItems = {
         {
             active: [
                 {
-                    label: 'Home',
+                    label: 'Manage Events',
                     routeLink: '/organization'
                 },
                 {
@@ -79,8 +79,12 @@ export const menuItems = {
         {
             active: [
                 {
-                    label: 'Home',
+                    label: 'Donation Requests',
                     routeLink: '/employee'
+                },
+                {
+                    label: 'Events',
+                    routeLink: '/employee/events'
                 },
                 {
                     label: 'Pickup Tasks',
@@ -100,10 +104,10 @@ export const menuItems = {
     admin: [
         {
             active: [
-                {
-                    label: 'Home',
-                    routeLink: '/admin'
-                },
+                // {
+                //     label: 'Home',
+                //     routeLink: '/admin'
+                // },
                 {
                     label: 'Manage Users',
                     routeLink: '/admin/manage-user'
@@ -112,10 +116,10 @@ export const menuItems = {
                     label: 'Manage Organization',
                     routeLink: '/admin/manage-organization'
                 },
-                {
-                    label: 'Report',
-                    routeLink: '/admin/report'
-                }
+                // {
+                //     label: 'Report',
+                //     routeLink: '/admin/report'
+                // }
             ]
         },
         {

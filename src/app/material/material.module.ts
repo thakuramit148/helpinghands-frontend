@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import {
   MatButtonModule, MatSelectModule, MatSnackBarModule, MatDialogModule,
-  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatSortModule, MatSlideToggleModule, MatTooltipModule
+  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatMenuModule
+  , MatSortModule, MatSlideToggleModule, MatTooltipModule, MatDatepickerModule
+  , MatNativeDateModule
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
@@ -22,7 +24,9 @@ const MaterialComponents = [
   MatSortModule,
   MatPaginatorModule,
   MatSlideToggleModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({

@@ -24,6 +24,7 @@ import { UserDonationHistoryComponent } from './user/user-donation-history/user-
 import { UserVolunteerTasksComponent } from './user/user-volunteer-tasks/user-volunteer-tasks.component';
 import { EmployeePickupTasksComponent } from './employee/employee-pickup-tasks/employee-pickup-tasks.component';
 import { UserPickupTasksComponent } from './user/user-pickup-tasks/user-pickup-tasks.component';
+import { EmployeeEventsComponent } from './employee/employee-events/employee-events.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'user', pathMatch: 'full' },
@@ -48,6 +49,7 @@ export const routes: Routes = [
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard], data: { roles: ['employee'] } },
   { path: 'employee/login', component: EmployeeLoginComponent },
   { path: 'employee/pickup-tasks', component: EmployeePickupTasksComponent },
+  { path: 'employee/events', component: EmployeeEventsComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'admin/login', component: AdminLoginComponent },
   { path: 'admin/manage-user', component: AdminManageUserComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },

@@ -1,0 +1,50 @@
+<div class="sub-container-2">
+    <form [formGroup]="eventForm" (ngSubmit)="addEvent()">
+        <p>Add new event</p>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="form.title.errors?.required">title is reqiured</mat-error>
+                <mat-error *ngIf="form.title.errors?.minlength">title must have atleast 4
+                    characters</mat-error>
+                <mat-error *ngIf="form.title.errors?.maxlength">title must have less than 100
+                    characters</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Events starting date</mat-label>
+                <input matInput formControlName="start" [matDatepicker]="startDate" [min]="minDate">
+                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+                <mat-error *ngIf="form.start.errors?.required">starting date is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Events ending date</mat-label>
+                <input matInput formControlName="end" [matDatepicker]="endDate" [min]="endMinDate">
+                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate></mat-datepicker>
+                <mat-error *ngIf="form.end.errors?.required">ending date is reqiured</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <mat-form-field appearance="fill" color="accent">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description">
+                <mat-error *ngIf="form.description.errors?.required">description is reqiured</mat-error>
+                <mat-error *ngIf="form.description.errors?.minlength">description must have atleast 6
+                    characters</mat-error>
+                <mat-error *ngIf="form.description.errors?.maxlength">description must have less than 300
+                    characters</mat-error>
+                <mat-error *ngIf="form.description.errors?.pattern">confirm description does not match
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-container">
+            <button mat-raised-button color="accent" type="submit">Add</button>
+        </div>
+    </form>
+</div>

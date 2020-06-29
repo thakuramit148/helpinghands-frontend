@@ -89,11 +89,7 @@ export class UserPickupTasksComponent implements OnInit {
 
   async onSubmit() {
     if (this.form.organization.value) {
-      console.log(this.form.organization.value);
-
       this.volunteerId = this.form.organization.value.volId;
-      console.log(this.volunteerId);
-
       userDonationData = [];
       donationDetails = [];
       userDonationData = await this.getDonationDetials();
@@ -165,7 +161,7 @@ export class UserPickupTasksComponent implements OnInit {
     const dialogRef1 = this.dialog.open(ConfirmBoxComponent,
       {
         panelClass: 'no-padding-dialog',
-        data: 'Do you want to take this pickup request (id=' + model.id + ')'
+        data: 'Do you want to take this pickup request'
       });
     const closeResp = await dialogRef1.afterClosed().toPromise();
     if (closeResp) {

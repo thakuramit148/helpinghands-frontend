@@ -1,0 +1,24 @@
+
+.sub-conatiner {
+    padding: 40px 40px 40px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .calendar-container {
+    width:55%;
+  }
+  
+  .event-details {
+    background-color: #212529;
+    color: white;
+    margin-left: 50px;
+    width: 25%;
+    padding: 10px;
+  }
+  
+  .field{
+    font-size: 20px;
+    color: bisque;
+  }
+  
