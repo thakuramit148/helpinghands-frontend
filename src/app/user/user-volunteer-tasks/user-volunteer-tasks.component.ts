@@ -41,7 +41,7 @@ export class UserVolunteerTasksComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private loginService: LoginStateService,
+    public loginService: LoginStateService,
     private volunteerService: VolunteerService,
     private userService: UserService,
     private donationService: DonationService,

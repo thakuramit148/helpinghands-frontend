@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   menuItems = menuItems;
 
   constructor(
-    private loginStateService: LoginStateService,
+    public loginStateService: LoginStateService,
     private router: Router,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,

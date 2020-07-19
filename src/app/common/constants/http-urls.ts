@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:8080/'
+export const baseURL = 'http://api-gateway:8080/'
 export const authenticationServiceURL = baseURL + 'auth/';
 export const zuulUserServiceBaseURL = baseURL + 'user-service/user';
 export const zuulOrganizationServiceBaseURL = baseURL + 'organization-service/organization';

@@ -10,7 +10,7 @@ export class NotFoundComponent implements OnInit {
   
   image = 'assets/img/notfound.jpg';
 
-  constructor(private loginStateService: LoginStateService) {
+  constructor(public loginStateService: LoginStateService) {
     const role = loginStateService.getLoginState();
     if (role !== null) {
       loginStateService.role = role.role;
